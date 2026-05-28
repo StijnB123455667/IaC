@@ -1,7 +1,0 @@
----
-- name: Example playbook using a Galaxy/GitHub role
-  hosts: webservers
-  become: true
-  roles:
-    # Vervang hieronder door jouw Galaxy namespace.role of GitHub role naam.
-    - webserver
