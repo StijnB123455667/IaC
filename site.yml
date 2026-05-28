@@ -1,0 +1,16 @@
+---
+- name: Configure webserver
+  hosts: webservers
+  become: true
+  vars:
+    php_test_file: info.php
+  roles:
+    - webserver
+
+- name: Configure database server
+  hosts: databases
+  become: true
+  vars:
+    mysql_bind_address: "0.0.0.0"
+  roles:
+    - database
