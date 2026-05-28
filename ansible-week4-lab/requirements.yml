@@ -3,8 +3,5 @@ collections:
   - name: community.mysql
 
 roles:
-  # Voor opdracht 3: vervang dit door de GitHub/Galaxy role van je medestudent.
-  # - name: klasgenoot.webserver
-  #   src: https://github.com/gebruikersnaam/ansible-role-webserver.git
-  #   scm: git
-  #   version: main
+  - name: MrLaurensHEdu.webserver
+  - name: MrLaurensHEdu.database
