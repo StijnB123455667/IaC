@@ -1,0 +1,8 @@
+---
+- name: Use role from a fellow student
+  hosts: webservers
+  become: true
+  roles:
+    # Voor opdracht 3: installeer de role eerst via requirements.yml
+    # en zet daarna de echte role naam hieronder.
+    - klasgenoot.webserver
