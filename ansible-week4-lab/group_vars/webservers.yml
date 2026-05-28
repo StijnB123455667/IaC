@@ -1,0 +1,8 @@
+---
+apache_service_name: apache2
+web_packages:
+  - apache2
+  - php
+  - php-mysql
+web_document_root: /var/www/html
+web_index_title: "Ansible Week 4 Webserver"
