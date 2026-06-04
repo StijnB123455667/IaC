@@ -1,7 +1,0 @@
----
-collections:
-  - name: community.mysql
-
-roles:
-  - name: MrLaurensHEdu.webserver
-  - name: MrLaurensHEdu.database
