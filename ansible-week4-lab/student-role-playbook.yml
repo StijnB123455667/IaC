@@ -1,6 +1,0 @@
----
-- name: Use role from a fellow student
-  hosts: webservers
-  become: true
-  roles:
-    - klasgenoot.webserver
