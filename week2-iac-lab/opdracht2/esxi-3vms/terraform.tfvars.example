@@ -1,0 +1,21 @@
+esxi_hostname        = "192.168.1.10"
+esxi_username        = "root"
+esxi_password        = "CHANGE_ME"
+disk_store           = "datastore1"
+virtual_network      = "VM Network"
+ubuntu_2404_ova_path = "./noble-server-cloudimg-amd64.ova"
+name_prefix          = "iac-w2"
+admin_username       = "iac"
+ssh_public_key_path  = "~/.ssh/id_ed25519.pub"
+
+network_interface_name = "ens160"
+ip_prefix_length       = 24
+gateway                = "192.168.1.1"
+dns_servers            = ["1.1.1.1", "8.8.8.8"]
+
+webserver_ips = [
+  "192.168.1.101",
+  "192.168.1.102"
+]
+
+database_ip = "192.168.1.103"

@@ -1,0 +1,5 @@
+prefix              = "iac-w2-opdr2"
+location            = "westeurope"
+admin_username      = "iac"
+ssh_public_key_path = "~/.ssh/id_ed25519.pub"
+admin_source_ip_cidr = "0.0.0.0/0"
