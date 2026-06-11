@@ -1,0 +1,10 @@
+---
+collections:
+  - name: community.docker
+
+# Later, when your Docker role is published to Ansible Galaxy, add it here.
+# Example:
+# roles:
+#   - name: jouw_namespace.iac_docker
+#
+# For now the playbook uses the local Galaxy-ready role in ansible/roles/iac_docker.

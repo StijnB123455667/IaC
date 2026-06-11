@@ -1,0 +1,68 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Install Docker packages
+  ansible.builtin.apt:
+    name:
+      - docker.io
+      - python3-docker
+    state: present
+
+- name: Ensure Docker service is enabled and running
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Add testuser to docker group
+  ansible.builtin.user:
+    name: testuser
+    groups: docker
+    append: true
+
+- name: Create Hello World web directory
+  ansible.builtin.file:
+    path: /opt/hello-world-iac
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Create Hello World index.html
+  ansible.builtin.copy:
+    dest: /opt/hello-world-iac/index.html
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Hello World IaC</title>
+      </head>
+      <body>
+        <h1>Hello World from Hybrid Cloud IaC</h1>
+        <p>This container is deployed with Terraform, Ansible and Docker.</p>
+        <p>Host: {{ inventory_hostname }}</p>
+      </body>
+      </html>
+
+- name: Pull container image
+  community.docker.docker_image:
+    name: "{{ docker_image }}"
+    source: pull
+
+- name: Run Hello World container
+  community.docker.docker_container:
+    name: "{{ docker_container_name }}"
+    image: "{{ docker_image }}"
+    state: started
+    restart_policy: always
+    recreate: true
+    ports:
+      - "{{ docker_host_port }}:{{ docker_container_port }}"
+    volumes:
+      - /opt/hello-world-iac/index.html:/usr/share/nginx/html/index.html:ro

@@ -1,0 +1,46 @@
+---
+- name: Install Docker and run Hello World container on both hybrid VMs
+  hosts: hybrid
+  become: true
+  roles:
+    - iac_docker
+
+- name: Configure automated SSH from ESXi VM to Azure VM
+  hosts: esxi
+  become: false
+  vars:
+    azure_ip: "{{ hostvars['azure-vm']['ansible_host'] }}"
+  tasks:
+    - name: Ensure SSH directory exists on ESXi VM
+      ansible.builtin.file:
+        path: "/home/{{ ansible_user }}/.ssh"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0700'
+
+    - name: Copy private key to ESXi VM for lab SSH to Azure VM
+      ansible.builtin.copy:
+        src: "{{ ssh_private_key_src }}"
+        dest: "/home/{{ ansible_user }}/.ssh/id_ed25519"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0600'
+
+    - name: Create SSH config alias for Azure VM
+      ansible.builtin.copy:
+        dest: "/home/{{ ansible_user }}/.ssh/config"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0600'
+        content: |
+          Host {{ azure_ssh_alias }}
+            HostName {{ azure_ip }}
+            User {{ ansible_user }}
+            IdentityFile ~/.ssh/id_ed25519
+            StrictHostKeyChecking no
+            UserKnownHostsFile /dev/null
+
+    - name: Show video command for SSH test
+      ansible.builtin.debug:
+        msg: "SSH test for the video: ssh {{ azure_ssh_alias }}"

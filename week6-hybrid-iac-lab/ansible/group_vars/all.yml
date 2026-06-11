@@ -1,0 +1,10 @@
+---
+docker_image: "nginx:alpine"
+docker_container_name: "hello-world-iac"
+docker_host_port: 80
+docker_container_port: 80
+
+ssh_private_key_src: "/home/student/.ssh/week6_testuser_ed25519"
+azure_ssh_host_alias: "azure-vm"
+azure_ssh_user: "testuser"
+azure_ssh_alias: "azure-vm"

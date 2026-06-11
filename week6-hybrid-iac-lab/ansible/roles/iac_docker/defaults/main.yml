@@ -1,0 +1,5 @@
+---
+container_name: hello-world-iac
+container_image: nginx:alpine
+container_port: 80
+host_port: 80

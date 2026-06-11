@@ -1,0 +1,26 @@
+name: Hybrid deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    # Use a self-hosted runner that can reach your ESXi server and Azure.
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Terraform init
+        working-directory: terraform
+        run: terraform init
+
+      - name: Terraform apply
+        working-directory: terraform
+        run: terraform apply -auto-approve
+
+      - name: Install Ansible collections
+        run: ansible-galaxy collection install -r ansible/requirements.yml
+
+      - name: Run Ansible deployment
+        run: ansible-playbook -i terraform/generated/inventory.ini ansible/playbooks/site.yml

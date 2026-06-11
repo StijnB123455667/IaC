@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  role_name: iac_docker
+  namespace: jouw_namespace
+  author: Stijn
+  description: Installs Docker and runs a Hello World container for the IaC hybrid cloud lab.
+  company: School lab
+  license: MIT
+  min_ansible_version: "2.16"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - noble
+  galaxy_tags:
+    - docker
+    - iac
+    - hybridcloud
+
+dependencies: []

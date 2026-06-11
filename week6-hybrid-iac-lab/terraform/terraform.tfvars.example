@@ -1,0 +1,27 @@
+# Copy this file to terraform.tfvars and fill in local values.
+# Never commit terraform.tfvars to GitHub.
+
+prefix              = "week6"
+admin_username      = "testuser"
+ssh_public_key_path = "/home/student/.ssh/week6_testuser_ed25519.pub"
+
+deploy_azure = true
+deploy_esxi  = true
+
+# Get this with: az account show --query id -o tsv
+azure_subscription_id     = "PASTE_YOUR_SUBSCRIPTION_ID_HERE"
+azure_location            = "westeurope"
+azure_resource_group_name = "rg-week6-hybrid-iac"
+azure_vm_size             = "Standard_B2ats_v2"
+
+# Your lab ESXi values
+esxi_hostname  = "192.168.1.114"
+esxi_username  = "root"
+esxi_password  = "FILL_IN_LOCALLY_ONLY"
+esxi_datastore = "Storage01"
+esxi_network   = "VM Network"
+esxi_ova_path  = "/home/student/iac/images/noble-server-cloudimg-amd64.ova"
+
+esxi_vm_memory_mb  = 2048
+esxi_vm_vcpu       = 1
+esxi_boot_firmware = "efi"
