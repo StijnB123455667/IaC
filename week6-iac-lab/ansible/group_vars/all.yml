@@ -1,5 +1,5 @@
 ---
-docker_image: "nginx:alpine"
+docker_image: "ghcr.io/stijnb123455667/iac/hello-world-iac:latest"
 docker_container_name: "hello-world-iac"
 docker_host_port: 80
 docker_container_port: 80
